@@ -1,0 +1,75 @@
+================================================================================
+HOW TO ADD since_month COLUMN TO DATABASE
+================================================================================
+
+STEP 1: Open phpMyAdmin
+------------------------
+1. Open your web browser
+2. Go to: http://localhost/phpmyadmin
+3. Login if required
+
+STEP 2: Select the Database
+----------------------------
+1. Click on "barangay" database from the left sidebar
+
+STEP 3: Run the SQL Script
+---------------------------
+1. Click on the "SQL" tab at the top
+2. Open the file: DATABASE_UPDATE.sql (in BSCIMS folder)
+3. Copy ALL the SQL code from that file
+4. Paste it into the SQL query box in phpMyAdmin
+5. Click the "Go" button at the bottom right
+
+STEP 4: Verify Success
+-----------------------
+You should see messages like:
+✓ "1 row affected" for reg_online table
+✓ "1 row affected" for residents table
+
+STEP 5: Check the Tables (Optional)
+------------------------------------
+To verify the columns were added:
+
+1. Click on "reg_online" table in left sidebar
+2. Click "Structure" tab
+3. Look for "since_month" column (should be right after "since_year")
+
+4. Click on "residents" table in left sidebar
+5. Click "Structure" tab
+6. Look for "since_month" column (should be right after "since_year")
+
+================================================================================
+ALTERNATIVE: If you prefer to add columns one at a time
+================================================================================
+
+FOR reg_online TABLE ONLY:
+---------------------------
+ALTER TABLE `reg_online` 
+ADD COLUMN `since_month` INT(2) NULL DEFAULT NULL 
+AFTER `since_year`;
+
+FOR residents TABLE ONLY:
+--------------------------
+ALTER TABLE `residents` 
+ADD COLUMN `since_month` INT(2) NULL DEFAULT NULL 
+AFTER `since_year`;
+
+================================================================================
+TROUBLESHOOTING
+================================================================================
+
+Error: "Duplicate column name 'since_month'"
+Solution: The column already exists! No need to add it again.
+
+Error: "Table 'barangay.reg_online' doesn't exist"
+Solution: Make sure you selected the correct database (barangay)
+
+Error: "Access denied"
+Solution: Make sure you're logged in as root or admin user
+
+================================================================================
+DONE!
+================================================================================
+After running the SQL script successfully, your registration forms will work
+perfectly with the new since_month field!
+
